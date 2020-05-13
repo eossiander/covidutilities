@@ -50,7 +50,7 @@ ihme_april29 <- ihme_download("April 29") %>%
     ihme_extractWA() 
 ```
 
-Download the latest data from JHUCSSE and extract the Washiongton data:
+Download the latest data from JHUCSSE and extract the Washington data:
 
 ``` r
 library(covidutilities)
