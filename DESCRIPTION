@@ -1,0 +1,29 @@
+Package: covidutilities
+Title: Utilities for working with Covid-19 data sources
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Eric",
+           family = "Ossiander",
+           role = c("aut", "cre"),
+           email = "ericossiander@gmail.com")
+Description: The covidutilities package has functions for downloading and processing several useful Covid-19 data sources
+   IHME projections; there are functions to download the projections, extract the projections for the United States
+   and Washington State, and to add the date of the last observed data in the time series.
+   JHUCSSE data - there are functions to download the data, extract the data for the United States and
+   Washington State, and convert it to a tidy data format.
+Imports:
+   dplyr,
+   magrittr,
+   readr,
+   tidyr
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Depends: 
+    R (>= 2.10)
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
