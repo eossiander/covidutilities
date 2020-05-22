@@ -34,6 +34,7 @@ download_google_mobility <- function(type = "states", silent = FALSE){
     df <-
         readr::read_csv("https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv", col_types = gm_spec) %>%
         dplyr::filter(country_region == "United States") %>%
+        dplyr::select(-country_region_code) %>%
         dplyr::rename(
                    retail_recreation = retail_and_recreation_percent_change_from_baseline,
                    grocery_pharmacy = grocery_and_pharmacy_percent_change_from_baseline,
@@ -58,8 +59,7 @@ download_google_mobility <- function(type = "states", silent = FALSE){
         gmcr <- filter(df, !is.na(county))
     }
     if (type %in% .US_states){
-        gmcr <- filter(df, state == type, !is.na(county))
+        gmcr <- filter(df, state == type)
     }
-    
     gmcr
 }
