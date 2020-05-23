@@ -79,18 +79,15 @@ library(covidutilities)
 library(ggplot2)
 library(magrittr)
 ## The US average
-gmcrus <- download_google_mobility("US")
+gmcrus <- download_google_mobility("US", silent = T)
 gmplot <- plot_google_mobility(df = gmcrus, level1 = "US")
-gmplot
 
 ## Washington State
-gmcrwa <- download_google_mobility("Washington")
+gmcrwa <- download_google_mobility("Washington", silent = T)
 gmplot1 <- plot_google_mobility(df = gmcrwa, level1 = "Washington")
-gmplot1
 
 ## Spokane County in Washington State
 gmplot2 <- plot_google_mobility(df = gmcrwa, level1 = "Washington", level2 = "Spokane County")
-gmplot2
 
 ```
 
