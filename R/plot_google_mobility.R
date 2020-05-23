@@ -37,17 +37,17 @@ plot_google_mobility <- function(df, level1 = "Washington", level2 = NULL){
         if (any(!is.na(df$state)))
             stop("data frame needs to be for US only")
         
-        data  <- select(df, -state, -county)
+        data  <- dplyr::select(df, -state, -county)
         
-        data2 <- pivot_longer(data, -c(country_region, date, timestamp),
+        data2 <- tidyr::pivot_longer(data, -c(country_region, date, timestamp),
                               names_to = "category",
                               values_to = "percent_change")
         
         maxX <- max(data2$percent_change, na.rm = T)
         data2_labels <- data2 %>%
-            distinct(category, .keep_all = T) %>%
-            mutate(percent_change = maxX,
-                   category_labels = recode(category,
+            dplyr::distinct(category, .keep_all = T) %>%
+            dplyr::mutate(percent_change = maxX,
+                   category_labels = dplyr::recode(category,
                                             grocery_pharmacy = "Grocery & pharmacy",
                                             parks = "Parks",
                                             residential = "Residential",
@@ -82,17 +82,17 @@ plot_google_mobility <- function(df, level1 = "Washington", level2 = NULL){
     if (level1 %in% .US_states & !is.null(level2)){
         if (!(level2 %in% names(table(df$county))))
             stop(paste(level2, "is not in", level1))
-        data  <- filter(df, state == level1, county == level2)
+        data  <- dplyr::filter(df, state == level1, county == level2)
         
-        data2 <- pivot_longer(data, -c(country_region, state, county, date, timestamp),
+        data2 <- tidyr::pivot_longer(data, -c(country_region, state, county, date, timestamp),
                               names_to = "category",
                               values_to = "percent_change")
         
         maxX <- max(data2$percent_change, na.rm = T)
         data2_labels <- data2 %>%
-            distinct(category, .keep_all = T) %>%
-            mutate(percent_change = maxX,
-                   category_labels = recode(category,
+            dplyr::distinct(category, .keep_all = T) %>%
+            dplyr::mutate(percent_change = maxX,
+                   category_labels = dplyr::recode(category,
                                             grocery_pharmacy = "Grocery & pharmacy",
                                             parks = "Parks",
                                             residential = "Residential",
@@ -128,18 +128,18 @@ plot_google_mobility <- function(df, level1 = "Washington", level2 = NULL){
         if (!(level1 %in% names(table(df$state))))
             stop(paste(level1, "is not in dataframe"))
         data <- df %>%
-            filter(state == level1, is.na(county)) %>%
-            select(-county)
+            dplyr::filter(state == level1, is.na(county)) %>%
+            dplyr::select(-county)
         
-        data2 <- pivot_longer(data, -c(country_region, state, date, timestamp),
+        data2 <- tidyr::pivot_longer(data, -c(country_region, state, date, timestamp),
                               names_to = "category",
                               values_to = "percent_change")
         
         maxX <- max(data2$percent_change, na.rm = T)
         data2_labels <- data2 %>%
-            distinct(category, .keep_all = T) %>%
-            mutate(percent_change = maxX,
-                   category_labels = recode(category,
+            dplyr::distinct(category, .keep_all = T) %>%
+            dplyr::mutate(percent_change = maxX,
+                   category_labels = dplyr::recode(category,
                                             grocery_pharmacy = "Grocery & pharmacy",
                                             parks = "Parks",
                                             residential = "Residential",

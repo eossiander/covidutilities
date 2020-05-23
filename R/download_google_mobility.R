@@ -50,16 +50,16 @@ download_google_mobility <- function(type = "states", silent = FALSE){
                    timestamp = Sys.time()
                )
     if (type %in% c("us", "US")){
-        gmcr <- filter(df, is.na(state), is.na(county))
+        gmcr <- dplyr::filter(df, is.na(state), is.na(county))
     }
     if (type %in% c("states", "States")){
-        gmcr <- filter(df, !is.na(state), is.na(county))
+        gmcr <- dplyr::filter(df, !is.na(state), is.na(county))
     }
     if (type %in% c("counties", "Counties")){
-        gmcr <- filter(df, !is.na(county))
+        gmcr <- dplyr::filter(df, !is.na(county))
     }
     if (type %in% .US_states){
-        gmcr <- filter(df, state == type)
+        gmcr <- dplyr::filter(df, state == type)
     }
     gmcr
 }

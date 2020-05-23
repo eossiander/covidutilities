@@ -26,6 +26,11 @@ two useful Covid-19 data sources.
         format to a ‘tidy’ long format,
       - `jhu_extractWA` extracts the Washington State data from the
         JHUCSSE data file.
+  - Google mobility community reports:
+      - `download_google_mobility` downloads Google mobility community
+        reports data for the US or a selected US state,
+      - `plot_google_mobility` plots Google mobility community reports
+        data for the US, or for a selected US state or county.
 
 ## Installation
 
@@ -58,3 +63,38 @@ library(magrittr)
 jhu <- jhu_get_data() %>%
     jhu_extractWA() 
 ```
+
+Download and plot Google mobility community reports data:
+
+``` r
+library(covidutilities)
+library(ggplot2)
+library(magrittr)
+## The US average
+gmcrus <- download_google_mobility("US")
+#> Downloading 'https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv'.
+gmplot <- plot_google_mobility(df = gmcrus, level1 = "US")
+gmplot
+```
+
+<img src="README_files/figure-gfm/example3-1.png" width="100%" />
+
+``` r
+
+## Washington State
+gmcrwa <- download_google_mobility("Washington")
+#> Downloading 'https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv'.
+gmplot1 <- plot_google_mobility(df = gmcrwa, level1 = "Washington")
+gmplot1
+```
+
+<img src="README_files/figure-gfm/example3-2.png" width="100%" />
+
+``` r
+
+## Spokane County in Washington State
+gmplot2 <- plot_google_mobility(df = gmcrwa, level1 = "Washington", level2 = "Spokane County")
+gmplot2
+```
+
+<img src="README_files/figure-gfm/example3-3.png" width="100%" />

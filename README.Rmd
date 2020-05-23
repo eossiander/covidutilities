@@ -33,6 +33,11 @@ sources.
 	Center for Systems Science and Engineering github site and converts it from the original
 	wide format to a 'tidy' long format,
 	+ `jhu_extractWA` extracts the Washington State data from the JHUCSSE data file.
+* Google mobility community reports:
+    + `download_google_mobility` downloads Google mobility community reports data for the 
+    US or a selected US state,
+    + `plot_google_mobility` plots Google mobility community reports data for the US, or
+    for a selected US state or county.
 		
 
 ## Installation
@@ -64,6 +69,28 @@ library(covidutilities)
 library(magrittr)
 jhu <- jhu_get_data() %>%
     jhu_extractWA() 
+
+```
+
+Download and plot Google mobility community reports data:
+
+```{r example3}
+library(covidutilities)
+library(ggplot2)
+library(magrittr)
+## The US average
+gmcrus <- download_google_mobility("US")
+gmplot <- plot_google_mobility(df = gmcrus, level1 = "US")
+gmplot
+
+## Washington State
+gmcrwa <- download_google_mobility("Washington")
+gmplot1 <- plot_google_mobility(df = gmcrwa, level1 = "Washington")
+gmplot1
+
+## Spokane County in Washington State
+gmplot2 <- plot_google_mobility(df = gmcrwa, level1 = "Washington", level2 = "Spokane County")
+gmplot2
 
 ```
 
