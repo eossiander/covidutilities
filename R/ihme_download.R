@@ -3,7 +3,7 @@
 #' @param IHMEdate One of the dates on which IHME posted a projection.
 #' Valid dates are March 26, March 27, March 29, March 30, March 31, April 1,
 #' April 5, April 7, April 8, April 10, April 13, April 17, April 21, April 22,
-#' April 27, April 28, April 29, May 4, and May 10
+#' April 27, April 28, April 29, May 4, May 10, May 12, and May 20.
 #' @return A tibble containing the IHME projection
 #' @examples
 #' ihme_projection <- ihme_download("April 22")
@@ -95,8 +95,17 @@ ihme_download <- function(IHMEdate){
                        download.file("https://ihmecovid19storage.blob.core.windows.net/archive/2020-05-10/ihme-covid19.zip", .temp)
                        readr::read_csv(unz(.temp, "2020_05_08/Hospitalization_all_locs.csv"))
                    },
+                   "May 12" = {
+                       download.file("https://ihmecovid19storage.blob.core.windows.net/archive/2020-05-12/ihme-covid19.zip", .temp)
+                       readr::read_csv(unz(.temp, "2020_05_10/Hospitalization_all_locs.csv"))
+                   },
+                   "May 20" = {
+                       download.file("https://ihmecovid19storage.blob.core.windows.net/archive/2020-05-20/ihme-covid19.zip", .temp)
+                       readr::read_csv(unz(.temp, "2020_05_19/Hospitalization_all_locs.csv"))
+                   },
                    stop(" Invalid IHME projection date. Valid dates are\n March 26, March 27, March 29, March 30, March 31,
- April 1, April 5, April 7, April 8, April 10, April 13, April 17, April 21, April 22,\n April 27, April 28, April 29, May 4 and May 10"))
+ April 1, April 5, April 7, April 8, April 10, April 13, April 17, April 21, April 22,\n April 27, April 28, April 29,
+May 4, May 10, May 12, and May 20"))
     unlink(.temp)
     dplyr::mutate(.temp2, projection_date = IHMEdate)
 }

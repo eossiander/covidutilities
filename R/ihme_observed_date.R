@@ -71,6 +71,12 @@ ihme_observed_date <- function(dat){
                     },
                     "May 10" = {
                         dplyr::mutate(dat, last_observed_date = as.Date("2020-05-06"))
+                    },
+                    "May 12" = {
+                        dplyr::mutate(dat, last_observed_date = as.Date("2020-05-09"))
+                    },
+                    "May 20" = {
+                        dplyr::mutate(dat, last_observed_date = as.Date("2020-05-09"))
                     })
     .temp
 }
